@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 import datetime as dt
+from flask_cors import CORS
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Load and preprocess the expense data
 expense_df = pd.read_csv("expense_data_1.csv")
